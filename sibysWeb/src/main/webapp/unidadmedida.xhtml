@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form>
+		<p:menuButton value="SIBYS">
+			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
+				icon="pi pi-save" />
+		</p:menuButton>
+	</h:form>
+
+	<h:form id="frmUnidadMedida">
+		<p:growl id="messages" showDetail="true" />
+
+		<p:toolbar>
+			<f:facet name="right">
+				<p:commandButton value="Grabar" icon="pi pi-folder-open"
+					process="@this :frmUnidadMedida:pgUnidadMedida"
+					actionListener="#{unidadMedidaController.saveUnidadMedida()}"
+					update=":frmUnidadMedida:messages :frmUnidadMedida:pgUnidadMedida :frmUnidadMedida:dtUnidadMedida" />
+			</f:facet>
+		</p:toolbar>
+
+		<p:panelGrid id="pgUnidadMedida" columns="2" layout="grid"
+			styleClass="showcase-text-align-center">
+			<p:outputLabel value="Nombre " for="txtNombre" />
+			<p:inputText id="txtNombre" required="true" maxlength="50"
+				value="#{unidadMedidaController.unidadMedida.nombre}" />
+		</p:panelGrid>
+
+		<p:dataTable id="dtUnidadMedida" var="unidadMedida"
+			value="#{unidadMedidaController.unidadesMedida}" rowKey="unidadMedida.id"
+			selectionMode="single" emptyMessage="No Existen Unidades de Medida">
+			<f:facet name="header">
+				<p:outputLabel value="Lista de Unidades de Medida" />
+			</f:facet>
+			<p:column headerText="Id">
+				<h:outputText value="#{unidadMedida.id}" />
+			</p:column>
+
+			<p:column headerText="Nombre">
+				<h:outputText value="#{unidadMedida.nombre}" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<meta charset="utf-8"/>
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  	<title>Sibys | Registrarse</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  	<!-- Font Awesome -->
+  	<!-- <h:outputStylesheet library="plugins" name="font-awesome-4.7.0/css/font-awesome.min.css"/>-->
+  	<!-- Ionicons -->
+  	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+  	<!-- icheck bootstrap -->
+  	<h:outputStylesheet library="plugins" name="icheck-bootstrap/icheck-bootstrap.min.css"/>
+  	<!-- Select2 -->
+  	<h:outputStylesheet library="plugins" name="select2/css/select2.min.css"/>
+  	<h:outputStylesheet library="plugins" name="select2-bootstrap4-theme/select2-bootstrap4.min.css"/>
+  	<!-- Theme style -->
+  	<h:outputStylesheet library="css" name="adminlte.min.css"/>
+  	<!-- Google Font: Source Sans Pro -->
+  	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
+</h:head> 
+<body class="hold-transition register-page">
+	<div class="register-box" style="width: 55%;">
+		<div class="register-logo">
+    		<a href="javascript:void(0)"><b>Sibys</b> | Registrarse</a>
+  		</div>
+  		<div class="card">
+    		<div class="card-body register-card-body">
+      			<h5 class="login-box-msg">Formulario de registro</h5>
+      			<h:form>
+      				<p:growl id="warn" showDetail="true"/>
+      				<div class="row">
+              			<div class="col-md-6">
+		        			<div class="form-group">
+		        				<label>Nombre</label>
+		          				<p:inputText value="#{usuarioController.usuario.nombre}" id="nombre" class="form-control" placeholder="Nombre"/>
+		          				<p:message for="nombre"/>		         				
+		        			</div>
+		        			<div class="form-group">
+		        				<label>Apellido</label>
+		          				<p:inputText value="#{usuarioController.usuario.apellido}" id="apellido" class="form-control" placeholder="Apellido"/>
+		          				<p:message for="apellido"/>		          				
+		        			</div>
+		        			<div class="form-group">
+		        				<label>Usuario</label>
+		          				<p:inputText value="#{usuarioController.usuario.usuario}" id="username" class="form-control" placeholder="Usuario"/>
+		          				<p:message for="username"/>		         				
+		        			</div>
+		        			<div class="form-group">
+		        				<label>Contraseña</label>
+		          				<p:password value="#{usuarioController.usuario.clave}" id="clave" class="form-control" placeholder="Contraseña"/>
+		          				<p:message for="clave"/>		          				
+		        			</div>
+	        			</div>
+	        			<div class="col-md-6">
+		        			<div class="form-group">
+		        				<label>Email</label>
+		          				<p:inputText value="#{usuarioController.usuario.email}" id="email" class="form-control" placeholder="Contraseña"/>
+		          				<p:message for="email"/>		          				
+		        			</div>
+		        			<!-- 
+		        			<div class="form-group">
+		        				<label>Grado</label>
+								<h:selectOneMenu id="grado_id"
+									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+									<f:selectItem itemLabel="PS4" itemValue="PS4" />
+									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group">
+		        				<label>Dependencia</label>
+								<h:selectOneMenu id="dependencia_id"
+									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+									<f:selectItem itemLabel="PS4" itemValue="PS4" />
+									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group">
+		        				<label>Unidad</label>
+								<h:selectOneMenu id="unidad_id"
+									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+									<f:selectItem itemLabel="PS4" itemValue="PS4" />
+									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+								</h:selectOneMenu>
+							</div>		        			
+		        			 -->
+		        			
+		        		</div>
+          				<div class="col-md-12" style="text-align: right;">
+            				<h:commandButton value="Registrarse" action="#{usuarioController.register}" update="warn" class="btn btn-primary"/>
+            				<p:outputLabel value=""/>
+          				</div>
+        			</div>
+      			</h:form>
+      			<br/>
+      			<p class="mb-0">
+        			<a href="login.xhtml" class="text-center">Regresar al inicio</a>
+      			</p>
+    		</div>    
+  		</div>
+	</div>
+	<!-- Jquery -->
+	<h:outputScript library="plugins" name="jquery/jquery.min.js"/>
+	<!-- Bootstrap 4 -->
+	<h:outputScript library="plugins" name="bootstrap/js/bootstrap.bundle.min.js"/>
+	<!-- AdminLTE App -->
+	<h:outputScript library="js" name="adminlte.min.js"/>
+	<!-- Select2 -->
+	<h:outputScript library="plugins" name="select2/js/select2.full.min.js"/>
+	<script>
+	    jQuery(document).ready(function() {
+	    	$('.select2').select2();
+	    });
+	</script>
+</body>
+</html>

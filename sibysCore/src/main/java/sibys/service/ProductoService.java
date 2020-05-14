@@ -1,0 +1,7 @@
+package sibys.service;
+
+import sibys.model.entity.Producto;
+
+public interface ProductoService extends CrudService<Producto>{
+	Producto findByCodigo(String codigo) throws Exception;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form>
+		<p:menuButton value="SIBYS">
+			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
+				icon="pi pi-save" />
+		</p:menuButton>
+	</h:form>
+
+	<h:form id="frmProducto">
+		<p:growl id="messages" showDetail="true" />
+
+		<p:toolbar>
+			<f:facet name="right">
+				<p:commandButton value="Grabar" icon="pi pi-folder-open"
+					process="@this :frmProducto:pgProducto"
+					actionListener="#{productoController.saveProducto()}"
+					update=":frmProducto:messages :frmProducto:pgProducto :frmProducto:dtProducto" />
+			</f:facet>
+		</p:toolbar>
+
+		<p:panelGrid id="pgProducto" columns="2" layout="grid"
+			styleClass="showcase-text-align-center">
+			<p:outputLabel value="Codigo: " for="txtCodigo" />
+			<p:inputText id="txtCodigo" required="true" maxlength="10"
+				value="#{productoController.producto.codigo}" />
+			<p:outputLabel value="Nombre " for="txtNombre" />
+			<p:inputText id="txtNombre" required="true" maxlength="50"
+				value="#{productoController.producto.nombre}" />
+			<p:outputLabel value="Descripcion " for="txtDescripcion" />
+			<p:inputText id="txtDescripcion" required="true" maxlength="200"
+				value="#{productoController.producto.descripcion}" />
+
+			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida" />
+			<p:selectOneMenu id="selUnidadMedida"
+				value="#{productoController.unidadMedida}">
+				<f:selectItem itemLabel="Seleccionar un Item" />
+				<f:selectItems value="#{productoController.unidadesMedida}"
+					var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+
+		<p:dataTable id="dtProducto" var="producto"
+			value="#{productoController.productos}" rowKey="producto.id"
+			selectionMode="single" emptyMessage="No Existen Productos">
+			<f:facet name="header">
+				<p:outputLabel value="Lista de Productos" />
+			</f:facet>
+			<p:column headerText="Id">
+				<h:outputText value="#{producto.id}" />
+			</p:column>
+
+			<p:column headerText="Codigo">
+				<h:outputText value="#{producto.codigo}" />
+			</p:column>
+
+			<p:column headerText="Nombre">
+				<h:outputText value="#{producto.nombre}" />
+			</p:column>
+
+			<p:column headerText="Descripción">
+				<h:outputText value="#{producto.descripcion}" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+</body>
+</html>
