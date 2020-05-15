@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,9 +32,9 @@ public class HistorialProducto implements Serializable{
 	@Column(name = "fecha_baja", nullable = true)
 	private LocalDateTime fechaBaja;
 
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "producto_id", nullable = true)
-	private Producto productoId;*/
+	private Producto productoId;
 
 	public Integer getId() {
 		return id;
@@ -74,11 +76,11 @@ public class HistorialProducto implements Serializable{
 		this.fechaBaja = fechaBaja;
 	}
 
-	/*public Producto getProductoId() {
+	public Producto getProductoId() {
 		return productoId;
 	}
 
 	public void setProductoId(Producto productoId) {
 		this.productoId = productoId;
-	}*/
+	}
 }

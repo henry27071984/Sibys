@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,18 +35,34 @@ public class Usuario implements Serializable{
 	@Column(name = "apellido", length = 200, nullable = false)
 	private String apellido;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "grado_id", nullable = true)
-	private Grado grado_id;
+	private Grado gradoId;
 	
 	@ManyToOne
 	@JoinColumn(name = "dependencia_id", nullable = true)
-	private Dependencia dependencia_id;
+	private Dependencia dependenciaId;
 	
 	@ManyToOne
 	@JoinColumn(name = "unidad_id", nullable = true)
-	private Unidad unidad_id;*/
+	private Unidad unidadId;
 	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}	
 
 	public String getUsuario() {
 		return usuario;
@@ -78,45 +96,27 @@ public class Usuario implements Serializable{
 		this.apellido = apellido;
 	}
 
-	/*public Grado getGrado_id() {
-		return grado_id;
+	public Grado getGradoId() {
+		return gradoId;
 	}
 
-	public void setGrado_id(Grado grado_id) {
-		this.grado_id = grado_id;
+	public void setGradoId(Grado gradoId) {
+		this.gradoId = gradoId;
 	}
 
-	public Dependencia getDependencia_id() {
-		return dependencia_id;
+	public Dependencia getDependenciaId() {
+		return dependenciaId;
 	}
 
-	public void setDependencia_id(Dependencia dependencia_id) {
-		this.dependencia_id = dependencia_id;
+	public void setDependenciaId(Dependencia dependenciaId) {
+		this.dependenciaId = dependenciaId;
 	}
 
-	public Unidad getUnidad_id() {
-		return unidad_id;
+	public Unidad getUnidadId() {
+		return unidadId;
 	}
 
-	public void setUnidad_id(Unidad unidad_id) {
-		this.unidad_id = unidad_id;
-	}*/
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	
+	public void setUnidadId(Unidad unidadId) {
+		this.unidadId = unidadId;
+	}	
 }
