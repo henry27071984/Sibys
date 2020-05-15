@@ -10,7 +10,7 @@ import sibys.model.repository.UsuarioRepository;
 import sibys.service.UsuarioService;
 
 @Named
-public class UsuarioMedidaServiceImpl implements UsuarioService, Serializable{
+public class UsuarioServiceImpl implements UsuarioService, Serializable{
 private static final long serialVersionUID = 1L;
 	
 	@Inject
