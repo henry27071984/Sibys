@@ -3,7 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+      xmlns:p="http://primefaces.org/ui" lang="es"> 
 
 <h:head>
 	<meta charset="utf-8"/>
@@ -33,72 +33,66 @@
     		<div class="card-body register-card-body">
       			<h5 class="login-box-msg">Formulario de registro</h5>
       			<h:form>
-      				<p:growl id="warn" showDetail="true"/>
-      				<div class="row">
+					<p:messages class="font-12" id="warn" showDetail="true" closable="true">
+						<p:autoUpdate />
+					</p:messages>
+					<div class="row">
               			<div class="col-md-6">
 		        			<div class="form-group">
-		        				<label>Nombre</label>
-		          				<p:inputText value="#{usuarioController.usuario.nombre}" id="nombre" class="form-control" placeholder="Nombre"/>
-		          				<p:message for="nombre"/>		         				
+		        				<p:outputLabel for="nombre" class="font-13" value="Nombre:" />
+		          				<p:inputText required="true" maxlength="200" value="#{usuarioController.usuario.nombre}" id="nombre" class="form-control" placeholder="Nombre"/>		          					         				
 		        			</div>
 		        			<div class="form-group">
-		        				<label>Apellido</label>
-		          				<p:inputText value="#{usuarioController.usuario.apellido}" id="apellido" class="form-control" placeholder="Apellido"/>
-		          				<p:message for="apellido"/>		          				
+		        				<p:outputLabel for="apellido" class="font-13" value="Apellido:" />
+		          				<p:inputText required="true" maxlength="200" value="#{usuarioController.usuario.apellido}" id="apellido" class="form-control" placeholder="Apellido"/>		          					          				
 		        			</div>
 		        			<div class="form-group">
-		        				<label>Usuario</label>
-		          				<p:inputText value="#{usuarioController.usuario.usuario}" id="username" class="form-control" placeholder="Usuario"/>
-		          				<p:message for="username"/>		         				
+		        				<p:outputLabel for="username" class="font-13" value="Usuario:" />
+		          				<p:inputText required="true" maxlength="50" value="#{usuarioController.usuario.usuario}" id="username" class="form-control" placeholder="Usuario"/>		          						         				
 		        			</div>
 		        			<div class="form-group">
-		        				<label>Contraseña</label>
-		          				<p:password value="#{usuarioController.usuario.clave}" id="clave" class="form-control" placeholder="Contraseña"/>
-		          				<p:message for="clave"/>		          				
+		        				<p:outputLabel for="clave" class="font-13" value="Contraseña:" />
+		          				<p:password required="true" maxlength="50" value="#{usuarioController.usuario.clave}" id="clave" class="form-control" placeholder="Contraseña"/>        				
 		        			</div>
 	        			</div>
 	        			<div class="col-md-6">
 		        			<div class="form-group">
-		        				<label>Email</label>
-		          				<p:inputText value="#{usuarioController.usuario.email}" id="email" class="form-control" placeholder="Contraseña"/>
-		          				<p:message for="email"/>		          				
+		        				<p:outputLabel for="email" class="font-13" value="Email:" />
+		          				<p:inputText required="true" maxlength="200" value="#{usuarioController.usuario.email}" id="email" type="email" class="form-control" placeholder="Email"/>
 		        			</div>
-		        			<!-- 
+		        			
 		        			<div class="form-group">
 		        				<label>Grado</label>
 								<h:selectOneMenu id="grado_id"
 									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
-									<f:selectItem itemLabel="Select One" itemValue="" />
-									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-									<f:selectItem itemLabel="PS4" itemValue="PS4" />
-									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+									<f:selectItem itemLabel="Mayor" itemValue="" />
+									<f:selectItem itemLabel="Capitán" itemValue="" />
+									<f:selectItem itemLabel="Teniente" itemValue="" />
 								</h:selectOneMenu>
 							</div>
 							<div class="form-group">
 		        				<label>Dependencia</label>
 								<h:selectOneMenu id="dependencia_id"
 									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
-									<f:selectItem itemLabel="Select One" itemValue="" />
-									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-									<f:selectItem itemLabel="PS4" itemValue="PS4" />
-									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+									<f:selectItem itemLabel="Ca Cdo Ser" itemValue="" />
+									<f:selectItem itemLabel="Ca I Mec A" itemValue="" />
+									<f:selectItem itemLabel="Ca I Mec B" itemValue="" />
 								</h:selectOneMenu>
 							</div>
 							<div class="form-group">
 		        				<label>Unidad</label>
 								<h:selectOneMenu id="unidad_id"
 									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
-									<f:selectItem itemLabel="Select One" itemValue="" />
-									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-									<f:selectItem itemLabel="PS4" itemValue="PS4" />
-									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+									<f:selectItem itemLabel="Regimiento" itemValue="" />
+									<f:selectItem itemLabel="Batallón 3" itemValue="" />
+									<f:selectItem itemLabel="Grupo 8" itemValue="" />
 								</h:selectOneMenu>
 							</div>		        			
-		        			 -->
+		        			 
 		        			
 		        		</div>
           				<div class="col-md-12" style="text-align: right;">
-            				<h:commandButton value="Registrarse" action="#{usuarioController.register}" update="warn" class="btn btn-primary"/>
+            				<h:commandButton value="Registrarse" action="#{usuarioController.register}" class="btn btn-primary"/>
             				<p:outputLabel value=""/>
           				</div>
         			</div>

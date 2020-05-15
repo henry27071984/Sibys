@@ -18,13 +18,13 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "usuario", length = 50, nullable = false)
+	@Column(name = "usuario", length = 50, nullable = false, unique = true)
 	private String usuario;	
 	
 	@Column(name = "clave", length = 50, nullable = false)
 	private String clave;
 	
-	@Column(name = "email", length = 200, nullable = false)
+	@Column(name = "email", length = 200, nullable = false, unique = true)
 	private String email;
 	
 	@Column(name = "nombre", length = 200, nullable = false)
