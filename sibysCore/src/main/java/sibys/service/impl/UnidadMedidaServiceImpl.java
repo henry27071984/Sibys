@@ -51,5 +51,10 @@ public class UnidadMedidaServiceImpl implements UnidadMedidaService, Serializabl
 	public UnidadMedida findByNombre(String nombre) throws Exception {
 		return unidadMedidaRepository.findByNombre(nombre);
 	}
+	
+	@Override
+	public UnidadMedida findByIds(Integer id) throws Exception {
+		return unidadMedidaRepository.findByIds(id);
+	}
 
 }

@@ -36,11 +36,13 @@
 			<div class="card-body login-card-body">
 				<h5 class="login-box-msg">Iniciar sesión</h5>
 				<h:form>
-					<p:growl id="warn" showDetail="true" />
+					<p:messages class="font-12" id="warn" showDetail="true" closable="true">
+						<p:autoUpdate />
+					</p:messages>
 					<div class="input-group mb-3">
-						<p:inputText value="#{usuarioController.username}" id="username"
-							class="form-control" placeholder="Usuario" />
-						<p:message for="username" />
+						<p:outputLabel for="username" class="font-13" style="display: none;" value="Usuario:" />
+						<p:inputText required="true" value="#{usuarioController.username}" id="username"
+							class="form-control username-text" placeholder="Usuario" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fa fa-user"></span>
@@ -48,9 +50,9 @@
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<p:password value="#{usuarioController.clave}" id="clave"
+						<p:outputLabel for="clave" class="font-13" style="display: none;" value="Contraseña:" />
+						<p:password required="true" value="#{usuarioController.clave}" id="clave"
 							class="form-control" placeholder="Contraseña" />
-						<p:message for="clave" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fa fa-user"></span>
@@ -59,6 +61,8 @@
 					</div>
 					<div class="row">
 						<div class="col-12">
+							<!-- reCaptcha localhost = 6LfdbPcUAAAAAAhEO17BwcOEL1wOId8wvMgwp4FT;  -->
+							<!-- reCaptcha sibys.iaen.edu.ec = 6Lc_efcUAAAAAAn3LyBMpsQDviTj-VcyX88pQMcI;  -->
 							<div style="padding-left: 8px;" class="g-recaptcha" data-callback="check"
 								data-sitekey="6LfdbPcUAAAAAAhEO17BwcOEL1wOId8wvMgwp4FT"></div>
 						</div>
@@ -104,7 +108,7 @@
 	      	}
 		}
 	    jQuery(document).ready(function() {
-	    	//scripts
+	    	$(".username-text").focus();
 	    });
 	</script>
 </body>

@@ -23,11 +23,6 @@
   	<h:outputStylesheet library="css" name="adminlte.min.css"/>
   	<!-- Google Font: Source Sans Pro -->
   	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
-  	<h:outputStylesheet>
-  		.font-12 {
-  			font-size: 12px;
-  		}
-  	</h:outputStylesheet>
 </h:head> 
 <body class="hold-transition register-page">
 	<div class="register-box" style="width: 55%;">
@@ -44,26 +39,26 @@
 					<div class="row">
               			<div class="col-md-6">
 		        			<div class="form-group">
-		        				<p:outputLabel for="nombre" value="Nombre:" />
-		          				<p:inputText required="true" value="#{usuarioController.usuario.nombre}" id="nombre" class="form-control" placeholder="Nombre"/>		          					         				
+		        				<p:outputLabel for="nombre" class="font-13" value="Nombre:" />
+		          				<p:inputText required="true" maxlength="200" value="#{usuarioController.usuario.nombre}" id="nombre" class="form-control" placeholder="Nombre"/>		          					         				
 		        			</div>
 		        			<div class="form-group">
-		        				<p:outputLabel for="apellido" value="Apellido:" />
-		          				<p:inputText required="true" value="#{usuarioController.usuario.apellido}" id="apellido" class="form-control" placeholder="Apellido"/>		          					          				
+		        				<p:outputLabel for="apellido" class="font-13" value="Apellido:" />
+		          				<p:inputText required="true" maxlength="200" value="#{usuarioController.usuario.apellido}" id="apellido" class="form-control" placeholder="Apellido"/>		          					          				
 		        			</div>
 		        			<div class="form-group">
-		        				<p:outputLabel for="username" value="Usuario:" />
-		          				<p:inputText required="true" value="#{usuarioController.usuario.usuario}" id="username" class="form-control" placeholder="Usuario"/>		          						         				
+		        				<p:outputLabel for="username" class="font-13" value="Usuario:" />
+		          				<p:inputText required="true" maxlength="50" value="#{usuarioController.usuario.usuario}" id="username" class="form-control" placeholder="Usuario"/>		          						         				
 		        			</div>
 		        			<div class="form-group">
-		        				<p:outputLabel for="clave" value="Contraseña:" />
-		          				<p:password required="true" value="#{usuarioController.usuario.clave}" id="clave" class="form-control" placeholder="Contraseña"/>        				
+		        				<p:outputLabel for="clave" class="font-13" value="Contraseña:" />
+		          				<p:password required="true" maxlength="50" value="#{usuarioController.usuario.clave}" id="clave" class="form-control" placeholder="Contraseña"/>        				
 		        			</div>
 	        			</div>
 	        			<div class="col-md-6">
 		        			<div class="form-group">
-		        				<p:outputLabel for="email" value="Email:" />
-		          				<p:inputText required="true" value="#{usuarioController.usuario.email}" id="email" type="email" class="form-control" placeholder="Contraseña"/>
+		        				<p:outputLabel for="email" class="font-13" value="Email:" />
+		          				<p:inputText required="true" maxlength="200" value="#{usuarioController.usuario.email}" id="email" type="email" class="form-control" placeholder="Email"/>
 		        			</div>
 		        			
 		        			<div class="form-group">
@@ -71,9 +66,8 @@
 								<h:selectOneMenu id="grado_id"
 									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
 									<f:selectItem itemLabel="Mayor" itemValue="" />
-									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-									<f:selectItem itemLabel="PS4" itemValue="PS4" />
-									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+									<f:selectItem itemLabel="Capitán" itemValue="" />
+									<f:selectItem itemLabel="Teniente" itemValue="" />
 								</h:selectOneMenu>
 							</div>
 							<div class="form-group">
@@ -81,9 +75,8 @@
 								<h:selectOneMenu id="dependencia_id"
 									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
 									<f:selectItem itemLabel="Ca Cdo Ser" itemValue="" />
-									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-									<f:selectItem itemLabel="PS4" itemValue="PS4" />
-									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+									<f:selectItem itemLabel="Ca I Mec A" itemValue="" />
+									<f:selectItem itemLabel="Ca I Mec B" itemValue="" />
 								</h:selectOneMenu>
 							</div>
 							<div class="form-group">
@@ -91,9 +84,8 @@
 								<h:selectOneMenu id="unidad_id"
 									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
 									<f:selectItem itemLabel="Regimiento" itemValue="" />
-									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-									<f:selectItem itemLabel="PS4" itemValue="PS4" />
-									<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+									<f:selectItem itemLabel="Batallón 3" itemValue="" />
+									<f:selectItem itemLabel="Grupo 8" itemValue="" />
 								</h:selectOneMenu>
 							</div>		        			
 		        			 

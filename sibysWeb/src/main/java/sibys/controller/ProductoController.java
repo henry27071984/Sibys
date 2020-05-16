@@ -32,6 +32,17 @@ public class ProductoController implements Serializable {
 
 	private UnidadMedida unidadMedida;
 	private List<UnidadMedida> unidadesMedida;
+	private Integer seleccionado;
+
+	
+
+	public Integer getSeleccionado() {
+		return seleccionado;
+	}
+
+	public void setSeleccionado(Integer seleccionado) {
+		this.seleccionado = seleccionado;
+	}
 
 	public void loadUnidadMedida() {
 		try {
@@ -82,6 +93,17 @@ public class ProductoController implements Serializable {
 
 	public void selectProducto(SelectEvent e) {
 		this.productoSelect = (Producto)e.getObject();
+	}
+	
+	public void selUnidadMedida(SelectEvent e){
+	    this.unidadMedida = (UnidadMedida)e.getObject();
+	}
+	
+	public UnidadMedida cargarUnidadesMedida() throws Exception {
+		System.out.print(this.seleccionado);
+		unidadMedida = unidadMedidaService.findByIds(this.seleccionado);
+		System.out.print("HOLA");
+		return unidadMedida;
 	}
 
 	public void editProducto() {

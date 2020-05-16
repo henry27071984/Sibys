@@ -70,5 +70,18 @@ public class UnidadMedidaRepositoryImpl implements UnidadMedidaRepository, Seria
 			return new UnidadMedida();
 		}
 	}
+	
+	@Override
+	public UnidadMedida findByIds(Integer id) throws Exception {
+		List<UnidadMedida> unidad = new ArrayList<>();
+		TypedQuery<UnidadMedida> query = em.createQuery("SELECT p FROM UnidadMedida p WHERE p.id = :id", UnidadMedida.class);
+		query.setParameter("id", id);
+		unidad = query.getResultList();
+		if(unidad != null && !unidad.isEmpty()) {
+			return unidad.get(0);
+		}else {
+			return new UnidadMedida();
+		}
+	}
 
 }

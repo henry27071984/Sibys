@@ -40,10 +40,12 @@
 
 			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida" />
 			<p:selectOneMenu id="selUnidadMedida"
-				value="#{productoController.unidadMedida}">
+				value="#{productoController.seleccionado}">
 				<f:selectItem itemLabel="Seleccionar un Item" />
 				<f:selectItems value="#{productoController.unidadesMedida}"
 					var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
+				<p:ajax
+					listener="#{productoController.cargarUnidadesMedida()}" />
 			</p:selectOneMenu>
 		</p:panelGrid>
 
@@ -67,6 +69,10 @@
 
 			<p:column headerText="Descripción">
 				<h:outputText value="#{producto.descripcion}" />
+			</p:column>
+
+			<p:column headerText="Unidad de Medida">
+				<h:outputText value="#{producto.unidadMedida.nombre}" />
 			</p:column>
 		</p:dataTable>
 
