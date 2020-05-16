@@ -100,9 +100,7 @@ public class ProductoController implements Serializable {
 	}
 	
 	public UnidadMedida cargarUnidadesMedida() throws Exception {
-		System.out.print(this.seleccionado);
 		unidadMedida = unidadMedidaService.findByIds(this.seleccionado);
-		System.out.print("HOLA");
 		return unidadMedida;
 	}
 

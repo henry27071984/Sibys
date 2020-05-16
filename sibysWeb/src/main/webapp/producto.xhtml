@@ -42,7 +42,7 @@
 
 			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida" />
 			<p:selectOneMenu id="selUnidadMedida"
-				value="#{productoController.seleccionado}">
+				value="#{productoController.seleccionado}" filter="true">
 				<f:selectItem itemLabel="Seleccionar un Item" />
 				<f:selectItems value="#{productoController.unidadesMedida}"
 					var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
@@ -82,6 +82,5 @@
 		</p:dataTable>
 
 	</h:form>
-
 </body>
 </html>

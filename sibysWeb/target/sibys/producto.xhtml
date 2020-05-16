@@ -5,10 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+	<h:outputStylesheet library="plugins"
+		name="select2/css/select2.min.css" />
+		<h:outputStylesheet library="plugins" name="select2-bootstrap4-theme/select2-bootstrap4.min.css"/>
+</h:head>
 <body>
 	<h:form>
 		<p:menuButton value="SIBYS">
+			<p:menuitem value="Unidad de Medida" url="unidadmedida.xhtml"
+				update="messages" icon="pi pi-save" />
 			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
 				icon="pi pi-save" />
 		</p:menuButton>
@@ -38,20 +44,24 @@
 			<p:inputText id="txtDescripcion" required="true" maxlength="200"
 				value="#{productoController.producto.descripcion}" />
 
-			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida" />
+			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida"
+				class="form-control select2" />
 			<p:selectOneMenu id="selUnidadMedida"
 				value="#{productoController.seleccionado}">
 				<f:selectItem itemLabel="Seleccionar un Item" />
 				<f:selectItems value="#{productoController.unidadesMedida}"
 					var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
-				<p:ajax
-					listener="#{productoController.cargarUnidadesMedida()}" />
+				<p:ajax listener="#{productoController.cargarUnidadesMedida()}" />
 			</p:selectOneMenu>
 		</p:panelGrid>
 
 		<p:dataTable id="dtProducto" var="producto"
 			value="#{productoController.productos}" rowKey="producto.id"
-			selectionMode="single" emptyMessage="No Existen Productos">
+			selectionMode="single" emptyMessage="No Existen Productos" rows="50"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+			rowsPerPageTemplate="100,150,200">
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Productos" />
 			</f:facet>
