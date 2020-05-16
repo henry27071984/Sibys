@@ -9,8 +9,8 @@
 <body>
 	<h:form>
 		<p:menuButton value="SIBYS">
-			<p:menuitem value="Unidad de Medida" url="unidadmedida.xhtml" update="messages"
-				icon="pi pi-save" />
+			<p:menuitem value="Unidad de Medida" url="unidadmedida.xhtml"
+				update="messages" icon="pi pi-save" />
 			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
 				icon="pi pi-save" />
 		</p:menuButton>
@@ -52,7 +52,11 @@
 
 		<p:dataTable id="dtProducto" var="producto"
 			value="#{productoController.productos}" rowKey="producto.id"
-			selectionMode="single" emptyMessage="No Existen Productos">
+			selectionMode="single" emptyMessage="No Existen Productos" rows="10"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+			rowsPerPageTemplate="5,10,15">
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Productos" />
 			</f:facet>
