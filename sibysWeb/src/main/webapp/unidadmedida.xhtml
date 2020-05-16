@@ -9,6 +9,8 @@
 <body>
 	<h:form>
 		<p:menuButton value="SIBYS">
+			<p:menuitem value="Productos" url="producto.xhtml" update="messages"
+				icon="pi pi-save" />
 			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
 				icon="pi pi-save" />
 		</p:menuButton>
@@ -34,8 +36,9 @@
 		</p:panelGrid>
 
 		<p:dataTable id="dtUnidadMedida" var="unidadMedida"
-			value="#{unidadMedidaController.unidadesMedida}" rowKey="unidadMedida.id"
-			selectionMode="single" emptyMessage="No Existen Unidades de Medida">
+			value="#{unidadMedidaController.unidadesMedida}"
+			rowKey="unidadMedida.id" selectionMode="single"
+			emptyMessage="No Existen Unidades de Medida">
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Unidades de Medida" />
 			</f:facet>
