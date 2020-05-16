@@ -92,6 +92,7 @@ public class ProductoController implements Serializable {
 	}
 
 	public void selectProducto(SelectEvent e) {
+		System.out.print(e);
 		this.productoSelect = (Producto)e.getObject();
 	}
 	

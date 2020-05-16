@@ -25,6 +25,10 @@
 					process="@this :frmProducto:pgProducto"
 					actionListener="#{productoController.saveProducto()}"
 					update=":frmProducto:messages :frmProducto:pgProducto :frmProducto:dtProducto" />
+				<p:commandButton value="Editar" icon="pi pi-folder-open"
+					process="@this"
+					actionListener="#{productoController.editProducto()}"
+					update=":frmProducto:messages :frmProducto:pgProducto" />
 			</f:facet>
 		</p:toolbar>
 
@@ -39,10 +43,10 @@
 			<p:outputLabel value="Descripcion " for="txtDescripcion" />
 			<p:inputText id="txtDescripcion" required="true" maxlength="200"
 				value="#{productoController.producto.descripcion}" />
-
 			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida" />
 			<p:selectOneMenu id="selUnidadMedida"
-				value="#{productoController.seleccionado}" filter="true">
+				value="#{productoController.seleccionado}" filter="true"
+				filterMatchMode="contains">
 				<f:selectItem itemLabel="Seleccionar un Item" />
 				<f:selectItems value="#{productoController.unidadesMedida}"
 					var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
@@ -60,6 +64,7 @@
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Productos" />
 			</f:facet>
+			<p:ajax event="rowSelect" listener="#{productoController.selectProducto}"/>
 			<p:column headerText="Id">
 				<h:outputText value="#{producto.id}" />
 			</p:column>

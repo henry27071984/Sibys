@@ -5,11 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<h:outputStylesheet library="plugins"
-		name="select2/css/select2.min.css" />
-		<h:outputStylesheet library="plugins" name="select2-bootstrap4-theme/select2-bootstrap4.min.css"/>
-</h:head>
+<h:head></h:head>
 <body>
 	<h:form>
 		<p:menuButton value="SIBYS">
@@ -29,6 +25,10 @@
 					process="@this :frmProducto:pgProducto"
 					actionListener="#{productoController.saveProducto()}"
 					update=":frmProducto:messages :frmProducto:pgProducto :frmProducto:dtProducto" />
+				<p:commandButton value="Editar" icon="pi pi-folder-open"
+					process="@this"
+					actionListener="#{productoController.editProducto()}"
+					update=":frmProducto:messages :frmProducto:pgProducto" />
 			</f:facet>
 		</p:toolbar>
 
@@ -44,10 +44,10 @@
 			<p:inputText id="txtDescripcion" required="true" maxlength="200"
 				value="#{productoController.producto.descripcion}" />
 
-			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida"
-				class="form-control select2" />
+			<p:outputLabel for="selUnidadMedida" value="Unidad de Medida" />
 			<p:selectOneMenu id="selUnidadMedida"
-				value="#{productoController.seleccionado}">
+				value="#{productoController.seleccionado}" filter="true"
+				filterMatchMode="contains">
 				<f:selectItem itemLabel="Seleccionar un Item" />
 				<f:selectItems value="#{productoController.unidadesMedida}"
 					var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
@@ -65,6 +65,7 @@
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Productos" />
 			</f:facet>
+			<p:ajax event="rowSelect" listener="#{productoController.selectProducto}"/>
 			<p:column headerText="Id">
 				<h:outputText value="#{producto.id}" />
 			</p:column>
@@ -87,6 +88,5 @@
 		</p:dataTable>
 
 	</h:form>
-
 </body>
 </html>

@@ -12,6 +12,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 		<class>sibys.model.entity.Unidad</class>
 		<class>sibys.model.entity.Dependencia</class>
 		<class>sibys.model.entity.HistorialProducto</class>
+		<class>sibys.model.entity.Pedido</class>
+		<class>sibys.model.entity.DetallePedido</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="update"/>
