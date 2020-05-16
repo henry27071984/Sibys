@@ -52,11 +52,11 @@
 
 		<p:dataTable id="dtProducto" var="producto"
 			value="#{productoController.productos}" rowKey="producto.id"
-			selectionMode="single" emptyMessage="No Existen Productos" rows="10"
+			selectionMode="single" emptyMessage="No Existen Productos" rows="50"
 			paginator="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-			rowsPerPageTemplate="5,10,15">
+			rowsPerPageTemplate="100,150,200">
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Productos" />
 			</f:facet>
