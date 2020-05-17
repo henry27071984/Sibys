@@ -66,6 +66,19 @@ public class UnidadRepositoryImpl implements UnidadRepository, Serializable{
 		}else {
 			return new Unidad();
 		}
-	}	
+	}
+
+	@Override
+	public Unidad findByIds(Integer id) throws Exception {
+		List<Unidad> unidades = new ArrayList<>();
+		TypedQuery<Unidad> query = em.createQuery("SELECT p FROM Unidad p WHERE p.id = :id", Unidad.class);
+		query.setParameter("id", id);
+		unidades = query.getResultList();
+		if(unidades != null && !unidades.isEmpty()) {
+			return unidades.get(0);
+		}else {
+			return new Unidad();
+		}
+	}
 }
 

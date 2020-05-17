@@ -66,6 +66,19 @@ public class DependenciaRepositoryImpl implements DependenciaRepository, Seriali
 		}else {
 			return new Dependencia();
 		}
-	}	
+	}
+
+	@Override
+	public Dependencia findByIds(Integer id) throws Exception {
+		List<Dependencia> dependencias = new ArrayList<>();
+		TypedQuery<Dependencia> query = em.createQuery("SELECT p FROM Dependencia p WHERE p.id = :id", Dependencia.class);
+		query.setParameter("id", id);
+		dependencias = query.getResultList();
+		if(dependencias != null && !dependencias.isEmpty()) {
+			return dependencias.get(0);
+		}else {
+			return new Dependencia();
+		}
+	}
 }
 

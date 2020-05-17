@@ -4,4 +4,5 @@ import sibys.model.entity.Dependencia;
 
 public interface DependenciaService extends CrudService<Dependencia>{
 	Dependencia findByNombre(String nombre) throws Exception;
+	Dependencia findByIds(Integer id) throws Exception;
 }
