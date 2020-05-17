@@ -66,6 +66,19 @@ public class GradoRepositoryImpl implements GradoRepository, Serializable{
 		}else {
 			return new Grado();
 		}
-	}	
+	}
+
+	@Override
+	public Grado findByIds(Integer id) throws Exception {
+		List<Grado> grados = new ArrayList<>();
+		TypedQuery<Grado> query = em.createQuery("SELECT p FROM Grado p WHERE p.id = :id", Grado.class);
+		query.setParameter("id", id);
+		grados = query.getResultList();
+		if(grados != null && !grados.isEmpty()) {
+			return grados.get(0);
+		}else {
+			return new Grado();
+		}
+	}
 }
 

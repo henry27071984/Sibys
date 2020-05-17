@@ -3,4 +3,5 @@ import sibys.model.entity.Unidad;
 
 public interface UnidadRepository extends JpaRepository<Unidad>{
 	Unidad findByNombre(String nombre) throws Exception;
+	Unidad findByIds(Integer id) throws Exception;
 }

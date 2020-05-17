@@ -1,7 +1,7 @@
 package sibys.model.entity;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +23,8 @@ public class Pedido implements Serializable{
 	@Column(name = "numero", length = 10, nullable = false, unique = true)
 	private String numero;
 
-	@Column(name = "fecha_confeccion", columnDefinition= "TIMESTAMP WITH TIME ZONE", nullable = false)
-	private ZonedDateTime fechaConfeccion;	
+	@Column(name = "fecha_confeccion", nullable = false)
+	private Date fechaConfeccion;	
 	
 	@ManyToOne
 	@JoinColumn(name = "dependencia_id", nullable = false)
@@ -50,11 +50,11 @@ public class Pedido implements Serializable{
 		this.numero = numero;
 	}
 
-	public ZonedDateTime getFechaConfeccion() {
+	public Date getFechaConfeccion() {
 		return fechaConfeccion;
 	}
 
-	public void setFechaConfeccion(ZonedDateTime fechaConfeccion) {
+	public void setFechaConfeccion(Date fechaConfeccion) {
 		this.fechaConfeccion = fechaConfeccion;
 	}
 

@@ -1,4 +1,6 @@
 package sibys.controller;
+
+import java.util.List;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,9 +12,16 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import sibys.model.entity.Usuario;
+import sibys.model.entity.Dependencia;
+import sibys.model.entity.Grado;
+import sibys.model.entity.Unidad;
 import sibys.service.UsuarioService;
+import sibys.service.DependenciaService;
+import sibys.service.GradoService;
+import sibys.service.UnidadService;
 import sibys.util.Message;
 import javax.annotation.PostConstruct;
+import org.primefaces.event.SelectEvent;
 
 @Named
 @ViewScoped
@@ -21,18 +30,90 @@ public class UsuarioController implements Serializable {
 
 	@Inject
 	private UsuarioService usuarioService;
+	@Inject
+	private DependenciaService dependenciaService;
+	@Inject
+	private GradoService gradoService;
+	@Inject
+	private UnidadService unidadService;
 
 	private Usuario usuario;
+
+	private Dependencia dependencia;
+	private List<Dependencia> dependencias;
+	private Integer dependenciaSeleccionado;
+
+	private Grado grado;
+	private List<Grado> grados;
+	private Integer gradoSeleccionado;
+
+	private Unidad unidad;
+	private List<Unidad> unidades;
+	private Integer unidadSeleccionado;
+
 	private String username;
 	private String clave;
 	private String nombre;
 	private String apellido;
 	private String email;
-	// private String grado_id;
+
+	public void loadDependencia() {
+		try {
+			this.dependencias = dependenciaService.findAll();
+		} catch (Exception e) {
+			Message.messageError("Error: " + e.getMessage());
+		}
+	}
+
+	public void loadGrado() {
+		try {
+			this.grados = gradoService.findAll();
+		} catch (Exception e) {
+			Message.messageError("Error: " + e.getMessage());
+		}
+	}
+
+	public void loadUnidad() {
+		try {
+			this.unidades = unidadService.findAll();
+		} catch (Exception e) {
+			Message.messageError("Error: " + e.getMessage());
+		}
+	}
+
+	public void selGrado(SelectEvent e){
+	    this.grado = (Grado)e.getObject();
+	}
+
+	public Grado cargarGrados() throws Exception {
+		grado = gradoService.findByIds(this.gradoSeleccionado);
+		return grado;
+	}
+
+	public void selDependencia(SelectEvent e){
+	    this.dependencia = (Dependencia)e.getObject();
+	}
+
+	public Dependencia cargarDependencias() throws Exception {
+		dependencia = dependenciaService.findByIds(this.dependenciaSeleccionado);
+		return dependencia;
+	}
+
+	public void selUnidad(SelectEvent e){
+	    this.unidad = (Unidad)e.getObject();
+	}
+
+	public Unidad cargarUnidades() throws Exception {
+		unidad = unidadService.findByIds(this.unidadSeleccionado);
+		return unidad;
+	}
 
 	@PostConstruct
 	public void init() {
 		this.usuario = new Usuario();
+		this.loadGrado();
+		this.loadDependencia();		
+		this.loadUnidad();
 	}
 	
 	public void login() {
@@ -53,9 +134,15 @@ public class UsuarioController implements Serializable {
 	public void register() {
 		try {
 			if (this.usuario.getId() != null) {
+				this.usuario.setGradoId(this.grado);
+				this.usuario.setDependenciaId(this.dependencia);
+				this.usuario.setUnidadId(this.unidad);
 				this.usuarioService.update(this.usuario);
 				Message.messageInfo("DATOS DE USUARIOS ACTUALIZADOS CORRECTAMENTE");
 			} else {
+				this.usuario.setGradoId(this.grado);
+				this.usuario.setDependenciaId(this.dependencia);
+				this.usuario.setUnidadId(this.unidad);
 				this.usuarioService.insert(this.usuario);
 				Message.messageInfo("USUARIO REGISTRADO CORRECTAMENTE");
 				redireccionarPagina("/producto.xhtml");
@@ -138,4 +225,75 @@ public class UsuarioController implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public Dependencia getDependencia() {
+		return dependencia;
+	}
+
+	public void setDependencia(Dependencia dependencia) {
+		this.dependencia = dependencia;
+	}
+
+	public List<Dependencia> getDependencias() {
+		return dependencias;
+	}
+
+	public void setDependencias(List<Dependencia> dependencias) {
+		this.dependencias = dependencias;
+	}
+
+	public Integer getDependenciaSeleccionado() {
+		return dependenciaSeleccionado;
+	}
+
+	public void setDependenciaSeleccionado(Integer dependenciaSeleccionado) {
+		this.dependenciaSeleccionado = dependenciaSeleccionado;
+	}
+
+	public Grado getGrado() {
+		return grado;
+	}
+
+	public void setGrado(Grado grado) {
+		this.grado = grado;
+	}
+
+	public List<Grado> getGrados() {
+		return grados;
+	}
+
+	public void setGrados(List<Grado> grados) {
+		this.grados = grados;
+	}
+
+	public Integer getGradoSeleccionado() {
+		return gradoSeleccionado;
+	}
+
+	public void setGradoSeleccionado(Integer gradoSeleccionado) {
+		this.gradoSeleccionado = gradoSeleccionado;
+	}
+
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
+
+	public List<Unidad> getUnidades() {
+		return unidades;
+	}
+
+	public void setUnidades(List<Unidad> unidades) {
+		this.unidades = unidades;
+	}
+
+	public Integer getUnidadSeleccionado() {
+		return unidadSeleccionado;
+	}
+
+	public void setUnidadSeleccionado(Integer unidadSeleccionado) {
+		this.unidadSeleccionado = unidadSeleccionado;
+	}
 }
