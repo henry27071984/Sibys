@@ -48,4 +48,9 @@ private static final long serialVersionUID = 1L;
 	public Grado findByNombre(String nombre) throws Exception {
 		return gradoRepository.findByNombre(nombre);
 	}
+
+	@Override
+	public Grado findByIds(Integer id) throws Exception {
+		return gradoRepository.findByIds(id);
+	}
 }

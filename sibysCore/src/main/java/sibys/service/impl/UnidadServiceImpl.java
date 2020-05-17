@@ -48,4 +48,9 @@ private static final long serialVersionUID = 1L;
 	public Unidad findByNombre(String nombre) throws Exception {
 		return unidadRepository.findByNombre(nombre);
 	}
+
+	@Override
+	public Unidad findByIds(Integer id) throws Exception {
+		return unidadRepository.findByIds(id);
+	}
 }

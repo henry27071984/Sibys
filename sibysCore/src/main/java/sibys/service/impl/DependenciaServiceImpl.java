@@ -48,4 +48,9 @@ private static final long serialVersionUID = 1L;
 	public Dependencia findByNombre(String nombre) throws Exception {
 		return dependenciaRepository.findByNombre(nombre);
 	}
+
+	@Override
+	public Dependencia findByIds(Integer id) throws Exception {
+		return dependenciaRepository.findByIds(id);
+	}
 }
