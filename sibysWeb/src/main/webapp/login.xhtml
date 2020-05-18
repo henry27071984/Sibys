@@ -12,10 +12,7 @@
 	<title>Sibys | Inicio de sesión</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- Font Awesome -->
-
-	<!-- <h:outputStylesheet library="plugins" name="font-awesome-4.7.0/css/font-awesome.min.css"/>-->
-	<!-- Ionicons -->
-
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 	<link rel="stylesheet"
 		href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 	<!-- icheck bootstrap -->
@@ -64,7 +61,7 @@
 							id="clave" class="form-control" placeholder="Contraseña" />
 						<div class="input-group-append">
 							<div class="input-group-text">
-								<span class="fa fa-user"></span>
+								<span class="fa fa-key"></span>
 							</div>
 						</div>
 					</div>
@@ -86,7 +83,7 @@
 							<h:commandButton value="Ingresar" onclick="return check();"
 								action="#{usuarioController.login}" update="warn"
 								class="btn btn-primary" />
-							<p:outputLabel value="" />
+							<p:outputLabel value="" />					
 						</div>
 					</div>
 				</h:form>

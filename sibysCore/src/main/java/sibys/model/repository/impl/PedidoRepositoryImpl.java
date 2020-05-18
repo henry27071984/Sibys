@@ -58,8 +58,8 @@ public class PedidoRepositoryImpl implements PedidoRepository, Serializable{
 	@Override
 	public Pedido findByNumero(String numero) throws Exception {
 		List<Pedido> pedidos = new ArrayList<>();
-		TypedQuery<Pedido> query = em.createQuery("SELECT p FROM Pedido p WHERE p.numero = ?", Pedido.class);
-		query.setParameter(1, numero);
+		TypedQuery<Pedido> query = em.createQuery("SELECT p FROM Pedido p WHERE p.numero = ?0", Pedido.class);
+		query.setParameter(0, numero);
 		pedidos = query.getResultList();
 		if(pedidos != null && !pedidos.isEmpty()) {
 			return pedidos.get(0);

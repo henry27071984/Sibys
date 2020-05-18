@@ -62,6 +62,15 @@ public class DetallePedidoRepositoryImpl implements DetallePedidoRepository, Ser
 		query.setParameter(1, codigo);
 		detalles = query.getResultList();
 		return detalles;
-	}	
+	}
+
+	@Override
+	public List<DetallePedido> findByPedido(Integer id) throws Exception {
+		List<DetallePedido> detalles = new ArrayList<>();
+		TypedQuery<DetallePedido> query = em.createQuery("SELECT h FROM DetallePedido h WHERE h.pedidoId.id = ?0", DetallePedido.class);
+		query.setParameter(0, id);
+		detalles = query.getResultList();
+		return detalles;
+	}
 }
 

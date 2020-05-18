@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Sibys | Lista de pedidos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- <h:outputStylesheet name="primeicons.css" library="css" />-->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<h:outputStylesheet library="css" name="adminlte.min.css" />
+	
+	<h:outputStylesheet>
+	    .value {
+	        font-weight: bold;
+	    }
+	     
+	    .ui-datatable {
+	        margin-bottom: 25px
+	    }
+	     
+	    .ui-datatable .ui-datatable-footer {
+	        text-align:left;
+	    }
+	     
+	    .ui-datalist ul {
+	        padding: 0 0 0 10px;
+	        margin: 5px 0;
+	    }
+	     
+	    .ui-datatable .ui-button-icon-only .ui-button-text {
+	        padding: 0;
+	        line-height: 1.2;
+	    }
+	</h:outputStylesheet>
+</h:head>
+<body>
+	<h:form>
+		<p:menuButton value="SIBYS">
+			<p:menuitem value="Productos" url="producto.xhtml" update="messages"
+				icon="pi pi-save" />
+			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
+				icon="pi pi-save" />
+		</p:menuButton>
+	</h:form>
+
+	<h:form id="frmListarPedidos">
+		<p:growl id="messages" showDetail="true" />
+	
+		<p:dataTable id="dtListarPedidos" var="ped"
+			value="#{listarPedidosController.pedidos}"
+			rowKey="ped.id" selectionMode="single"
+			emptyMessage="No Existen Pedidos" rows="50"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+			rowsPerPageTemplate="100,150,200">
+			<f:facet name="header">
+				<p:outputLabel value="Lista de relaciones de pedido" />
+			</f:facet>
+			<p:column headerText="Número">
+				<h:outputText value="#{ped.numero}" />
+			</p:column>
+			<p:column headerText="Dependencia">
+				<h:outputText value="#{ped.dependenciaId.getNombre()}" />
+			</p:column>
+			<p:column style="text-align: center;">
+            	 <h:commandLink style="color: white;" class="btn btn-primary" action="#{listarPedidosController.exportarPDF(ped.numero)}"><i class="fa fa-print"></i> Imprimir</h:commandLink>
+        	</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+</body>
+</html>

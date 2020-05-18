@@ -4,4 +4,5 @@ import sibys.model.entity.DetallePedido;
 
 public interface DetallePedidoService extends CrudService<DetallePedido>{
 	List<DetallePedido> findByProducto(String codigo) throws Exception;
+	List<DetallePedido> findByPedido(Integer id) throws Exception;
 }

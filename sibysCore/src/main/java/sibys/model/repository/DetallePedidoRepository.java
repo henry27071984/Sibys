@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface DetallePedidoRepository extends JpaRepository<DetallePedido>{
 	List<DetallePedido> findByProducto(String codigo) throws Exception;
+	List<DetallePedido> findByPedido(Integer id) throws Exception;
 }
