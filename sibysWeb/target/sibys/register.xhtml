@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" lang="es"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" lang="es"> 
 
 <h:head>
 	<meta charset="utf-8"/>
@@ -11,10 +11,6 @@
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   	<title>Sibys | Registrarse</title>
   	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-  	<!-- Font Awesome -->
-  	<!-- <h:outputStylesheet library="plugins" name="font-awesome-4.7.0/css/font-awesome.min.css"/>-->
-  	<!-- Ionicons -->
-  	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
   	<!-- icheck bootstrap -->
   	<h:outputStylesheet library="plugins" name="icheck-bootstrap/icheck-bootstrap.min.css"/>
   	<!-- Select2 -->
@@ -24,6 +20,8 @@
   	<h:outputStylesheet library="css" name="adminlte.min.css"/>
   	<!-- Google Font: Source Sans Pro -->
   	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
+  	<!-- Iconos -->
+  	<!-- <h:outputStylesheet name="primeicons.css" library="css" /> -->
 </h:head> 
 <body class="hold-transition register-page">
 	<div class="register-box" style="width: 55%;">
@@ -63,35 +61,34 @@
 		        			</div>
 		        			
 		        			<div class="form-group">
-		        				<label>Grado</label>
-								<h:selectOneMenu id="grado_id"
-									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
-									<f:selectItem itemLabel="Mayor" itemValue="" />
-									<f:selectItem itemLabel="Capitán" itemValue="" />
-									<f:selectItem itemLabel="Teniente" itemValue="" />
+		        				<p:outputLabel for="selGrado" class="font-13" value="Grado:" />
+								<h:selectOneMenu id="selGrado" required="true" value="#{usuarioController.gradoSeleccionado}" style="width: 100%;" class="form-control select2">
+									<f:selectItem itemLabel="Seleccionar un Grado"/>
+									<f:selectItems value="#{usuarioController.grados}" var="gra" itemLabel="#{gra.nombre}" itemValue="#{gra.id}" />
+									<p:ajax listener="#{usuarioController.cargarGrados()}"/>
 								</h:selectOneMenu>
 							</div>
+
 							<div class="form-group">
-		        				<label>Dependencia</label>
-								<h:selectOneMenu id="dependencia_id"
-									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
-									<f:selectItem itemLabel="Ca Cdo Ser" itemValue="" />
-									<f:selectItem itemLabel="Ca I Mec A" itemValue="" />
-									<f:selectItem itemLabel="Ca I Mec B" itemValue="" />
+		        				<p:outputLabel for="selDependencia" class="font-13" value="Dependencia:" />
+								<h:selectOneMenu id="selDependencia" required="true" value="#{usuarioController.dependenciaSeleccionado}" style="width: 100%;" class="form-control select2">
+									<f:selectItem itemLabel="Seleccionar una Dependencia"/>
+									<f:selectItems value="#{usuarioController.dependencias}" var="depe" itemLabel="#{depe.nombre}" itemValue="#{depe.id}" />
+									<p:ajax listener="#{usuarioController.cargarDependencias()}" />
 								</h:selectOneMenu>
 							</div>
+
 							<div class="form-group">
-		        				<label>Unidad</label>
-								<h:selectOneMenu id="unidad_id"
-									value="#{usuarioController.email}" class="form-control select2" style="width: 100%;">
-									<f:selectItem itemLabel="Regimiento" itemValue="" />
-									<f:selectItem itemLabel="Batallón 3" itemValue="" />
-									<f:selectItem itemLabel="Grupo 8" itemValue="" />
+		        				<p:outputLabel for="selUnidad" class="font-13" value="Unidad:" />
+								<h:selectOneMenu id="selUnidad" required="true" value="#{usuarioController.unidadSeleccionado}" style="width: 100%;" class="form-control select2">
+									<f:selectItem itemLabel="Seleccionar una Unidad"/>
+									<f:selectItems value="#{usuarioController.unidades}" var="uni" itemLabel="#{uni.nombre}" itemValue="#{uni.id}" />
+									<p:ajax listener="#{usuarioController.cargarUnidades()}" />
 								</h:selectOneMenu>
 							</div>
 		        		</div>
           				<div class="col-md-12" style="text-align: right;">
-            				<h:commandButton value="Registrarse" action="#{usuarioController.register}" class="btn btn-primary"/>
+            				<h:commandButton value="Registrarse" action="#{usuarioController.register}" class="btn btn-primary"/>            				
             				<p:outputLabel value=""/>
           				</div>
         			</div>
@@ -102,9 +99,7 @@
       			</p>
     		</div>    
   		</div>
-	</div>
-	<!-- Jquery -->
-	<h:outputScript library="plugins" name="jquery/jquery.min.js"/>
+	</div>	
 	<!-- Bootstrap 4 -->
 	<h:outputScript library="plugins" name="bootstrap/js/bootstrap.bundle.min.js"/>
 	<!-- AdminLTE App -->

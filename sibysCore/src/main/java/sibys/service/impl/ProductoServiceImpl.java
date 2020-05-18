@@ -52,4 +52,9 @@ public class ProductoServiceImpl implements ProductoService, Serializable{
 		return productoRepository.findByCodigo(codigo);
 	}
 
+	@Override
+	public List<Producto> findByNombre(String nombre) throws Exception {
+		return productoRepository.findByNombre(nombre);
+	}
+
 }

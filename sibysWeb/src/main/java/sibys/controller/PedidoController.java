@@ -1,5 +1,7 @@
 package sibys.controller;
+import java.io.Console;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -33,6 +35,8 @@ public class PedidoController implements Serializable{
 	private ProductoService productoService;
 	
 	private Pedido pedido;
+	
+	private String nombreProducto;
 	
 	private Dependencia dependencia;
 	private List<Dependencia> dependencias;
@@ -100,11 +104,21 @@ public class PedidoController implements Serializable{
 		this.pedido = pedido;
 	}
 	
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+	
+	
+	
 	@PostConstruct
 	public void init() {
 		this.pedido = new Pedido();
+		this.nombreProducto ="";
 		this.loadDependencia();
-		this.loadProductos();
+		//this.loadProductos();
 	}
 	
 	public void loadDependencia() {
@@ -115,11 +129,47 @@ public class PedidoController implements Serializable{
 		}
 	}
 	
-	public void loadProductos() {
-		try {
-			this.productos = productoService.findAll();
+	//public void loadProductos() {
+//		try {
+//			this.productos = productoService.findByDescripcion(descripcion);
+//		} catch (Exception e) {
+//			Message.messageError("Error: " + e.getMessage());
+//		}
+//	}
+	
+	public List<String> completeText(String query) {
+        
+		List<String> results = new ArrayList<>();
+		        
+        try {
+        	
+        	if (query != null && query.length() > 2)
+        	{	
+        		productos = productoService.findByNombre(query);
+        		        		
+        		for (Producto producto : productos) {
+        			results.add(producto.getNombre());
+				}
+        	}
+			
 		} catch (Exception e) {
-			Message.messageError("Error: " + e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	}
+                      
+        return results;
+    }
+	
+	public Integer obtenerProductoSeleccionado()
+	 {
+		for (Producto producto : productos) {
+			if (producto.getNombre().equals(this.nombreProducto)) {
+				this.productoSeleccionado = producto.getId();
+				break;
+			}
+		}
+		return 0;
+	 }
+	
+	
 }

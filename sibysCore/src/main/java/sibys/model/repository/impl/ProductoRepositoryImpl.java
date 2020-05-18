@@ -57,7 +57,19 @@ public class ProductoRepositoryImpl implements ProductoRepository, Serializable{
 			return new Producto();
 		}
 	}
+	
+	@Override
+	public List<Producto> findByNombre(String nombre) throws Exception {
+				
+		nombre = nombre.toUpperCase();
+		TypedQuery<Producto> query = em.createQuery("SELECT p FROM Producto p WHERE p.nombre like :nombre", Producto.class);
 
+		query.setParameter("nombre", nombre+"%");
+		query.setMaxResults(200);
+		return query.getResultList();
+		
+	}
+		
 	@Override
 	public Producto findByCodigo(String codigo) throws Exception {
 		List<Producto> productos = new ArrayList<>();
@@ -70,4 +82,6 @@ public class ProductoRepositoryImpl implements ProductoRepository, Serializable{
 			return new Producto();
 		}
 	}
+
+	
 }

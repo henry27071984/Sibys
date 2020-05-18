@@ -11,6 +11,10 @@
 		<p:menuButton value="SIBYS">
 			<p:menuitem value="Unidad de Medida" url="unidadmedida.xhtml"
 				update="messages" icon="pi pi-save" />
+			<p:menuitem value="Pedido" url="pedido.xhtml"
+				update="messages" icon="pi pi-save" />
+			<p:menuitem value="Lista de Pedidos" url="listapedidos.xhtml"
+				update="messages" icon="pi pi-save" />
 			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
 				icon="pi pi-save" />
 		</p:menuButton>
@@ -64,7 +68,8 @@
 			<f:facet name="header">
 				<p:outputLabel value="Lista de Productos" />
 			</f:facet>
-			<p:ajax event="rowSelect" listener="#{productoController.selectProducto}"/>
+			<p:ajax event="rowSelect"
+				listener="#{productoController.selectProducto}" />
 			<p:column headerText="Id">
 				<h:outputText value="#{producto.id}" />
 			</p:column>

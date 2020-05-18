@@ -35,13 +35,14 @@
 			<p:inputText id="txtCantidad" required="true" maxlength="3"
 				value="#{pedidoController.detallePedido.cantidad}" />
 			<p:outputLabel for="selProducto" value="Producto" />
-			<p:selectOneMenu id="selProducto"
-				value="#{pedidoController.productoSeleccionado}" filter="true"
-				filterMatchMode="contains" required="true">
-				<f:selectItem itemLabel="Seleccionar un Item" />
-				<f:selectItems value="#{pedidoController.productos}" var="pro"
-					itemLabel="#{pro.nombre}" itemValue="#{pro.id}" />
-			</p:selectOneMenu>
+			<p:autoComplete required="true" forceSelection="true" id="selProducto" value="#{pedidoController.nombreProducto}" completeMethod="#{pedidoController.completeText}" />
+<!-- 			<p:selectOneMenu id="selProducto" -->
+<!-- 				value="#{pedidoController.productoSeleccionado}" filter="true" -->
+<!-- 				filterMatchMode="contains" required="true"> -->
+<!-- 				<f:selectItem itemLabel="Seleccionar un Item" /> -->
+<!-- 				<f:selectItems value="#{pedidoController.productos}" var="pro" -->
+<!-- 					itemLabel="#{pro.nombre}" itemValue="#{pro.id}" /> -->
+<!-- 			</p:selectOneMenu> -->
 		</p:panelGrid>
 	</h:form>
 </body>
