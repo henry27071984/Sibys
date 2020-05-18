@@ -48,4 +48,9 @@ private static final long serialVersionUID = 1L;
 	public List<DetallePedido> findByProducto(String codigo) throws Exception {
 		return detallePedidoRepository.findByProducto(codigo);
 	}
+
+	@Override
+	public List<DetallePedido> findByPedido(Integer id) throws Exception {
+		return detallePedidoRepository.findByPedido(id);
+	}
 }

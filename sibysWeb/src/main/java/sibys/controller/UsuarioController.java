@@ -1,6 +1,7 @@
 package sibys.controller;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,7 +12,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import sibys.model.entity.Usuario;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
 import sibys.model.entity.Dependencia;
 import sibys.model.entity.Grado;
 import sibys.model.entity.Unidad;
@@ -37,7 +41,7 @@ public class UsuarioController implements Serializable {
 	@Inject
 	private UnidadService unidadService;
 
-	private Usuario usuario;
+	private Usuario usuario;	
 
 	private Dependencia dependencia;
 	private List<Dependencia> dependencias;
@@ -81,8 +85,8 @@ public class UsuarioController implements Serializable {
 		}
 	}
 
-	public void selGrado(SelectEvent e){
-	    this.grado = (Grado)e.getObject();
+	public void selGrado(SelectEvent e) {
+		this.grado = (Grado) e.getObject();
 	}
 
 	public Grado cargarGrados() throws Exception {
@@ -90,8 +94,8 @@ public class UsuarioController implements Serializable {
 		return grado;
 	}
 
-	public void selDependencia(SelectEvent e){
-	    this.dependencia = (Dependencia)e.getObject();
+	public void selDependencia(SelectEvent e) {
+		this.dependencia = (Dependencia) e.getObject();
 	}
 
 	public Dependencia cargarDependencias() throws Exception {
@@ -99,8 +103,8 @@ public class UsuarioController implements Serializable {
 		return dependencia;
 	}
 
-	public void selUnidad(SelectEvent e){
-	    this.unidad = (Unidad)e.getObject();
+	public void selUnidad(SelectEvent e) {
+		this.unidad = (Unidad) e.getObject();
 	}
 
 	public Unidad cargarUnidades() throws Exception {
@@ -112,14 +116,14 @@ public class UsuarioController implements Serializable {
 	public void init() {
 		this.usuario = new Usuario();
 		this.loadGrado();
-		this.loadDependencia();		
+		this.loadDependencia();
 		this.loadUnidad();
 	}
-	
+
 	public void login() {
 		try {
 			this.usuario = usuarioService.loginUser(username, clave);
-			
+
 			if (Objects.nonNull(usuario) && usuario.getUsuario().equals(username) && usuario.getClave().equals(clave)) {
 				redireccionarPagina("/producto.xhtml");
 			} else {
@@ -146,7 +150,7 @@ public class UsuarioController implements Serializable {
 				this.usuarioService.insert(this.usuario);
 				Message.messageInfo("USUARIO REGISTRADO CORRECTAMENTE");
 				redireccionarPagina("/producto.xhtml");
-			}			
+			}
 		} catch (Exception e) {
 			Message.messageError("ERROR EN REGISTRAR USUARIO: " + e.getMessage());
 		}
@@ -216,7 +220,7 @@ public class UsuarioController implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
