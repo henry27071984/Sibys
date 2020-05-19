@@ -5,7 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>	
+	<meta charset="utf-8"/>
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  	<title>Sibys | Pedido</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+</h:head>
 <body>
 	<h:form>
 		<p:menuButton value="SIBYS">
@@ -18,11 +24,22 @@
 			<p:menuitem value="Cerrar Sesion" url="login.xhtml" update="messages"
 				icon="pi pi-save" />
 		</p:menuButton>
+		<p:toolbar>
+			<f:facet name="right">
+				<p:commandButton value="Grabar" icon="pi pi-folder-open"
+					process="@this" update="messages"
+					actionListener="#{pedidoController.grabarPedido()}" />
+			</f:facet>
+		</p:toolbar>
+		<p:growl id="messages" showDetail="true" />
 		<p:panelGrid id="pgPedido" columns="4" layout="grid"
 			styleClass="showcase-text-align-center">
+			
 			<p:outputLabel value="Relación de Pedido: " for="txtRelacionPedido" />
 			<p:inputText id="txtRelacionPedido" required="true" maxlength="10"
-				value="#{pedidoController.pedido.numero}" />
+				value="#{pedidoController.pedido.numero}" >
+				<p:ajax event="blur" update="txtRelacionPedido" />
+				</p:inputText>
 			<p:outputLabel for="selDependencia" value="Dependencia" />
 			<p:selectOneMenu id="selDependencia"
 				value="#{pedidoController.seleccionado}" filter="true"
@@ -30,20 +47,67 @@
 				<f:selectItem itemLabel="Seleccionar un Item" />
 				<f:selectItems value="#{pedidoController.dependencias}" var="dep"
 					itemLabel="#{dep.nombre}" itemValue="#{dep.id}" />
+					<p:ajax listener="#{pedidoController.cargarDependencias()}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Cantidad: " for="txtCantidad" />
 			<p:inputText id="txtCantidad" required="true" maxlength="3"
-				value="#{pedidoController.detallePedido.cantidad}" />
+				value="#{pedidoController.detallePedido.cantidad}">
+				<p:ajax event="blur" update="txtCantidad" />
+			</p:inputText>
 			<p:outputLabel for="selProducto" value="Producto" />
-			<p:autoComplete required="true" forceSelection="true" id="selProducto" value="#{pedidoController.nombreProducto}" completeMethod="#{pedidoController.completeText}" />
-<!-- 			<p:selectOneMenu id="selProducto" -->
-<!-- 				value="#{pedidoController.productoSeleccionado}" filter="true" -->
-<!-- 				filterMatchMode="contains" required="true"> -->
-<!-- 				<f:selectItem itemLabel="Seleccionar un Item" /> -->
-<!-- 				<f:selectItems value="#{pedidoController.productos}" var="pro" -->
-<!-- 					itemLabel="#{pro.nombre}" itemValue="#{pro.id}" /> -->
-<!-- 			</p:selectOneMenu> -->
+			<p:autoComplete required="true" forceSelection="true"
+				id="selProducto" value="#{pedidoController.producto.nombre}"
+				var="myEnvironment"
+				converter="convertP"
+				itemValue="#{myEnvironment}"
+				itemLabel="#{myEnvironment.nombre}"
+				completeMethod="#{pedidoController.completeText}" >
+				<p:ajax event="itemSelect" ignoreAutoUpdate="true" listener="#{pedidoController.selectItem}" />
+				
+				</p:autoComplete>
+				
+			<p:outputLabel value="Observación: " for="txtObservacion" />
+			<p:inputText id="txtObservacion"
+				value="#{pedidoController.detallePedido.observacion}">
+				<p:ajax event="blur" update="txtObservacion" />
+			</p:inputText>
 		</p:panelGrid>
+		<p:commandButton value="Agregar" icon="pi pi-folder-open"
+			actionListener="#{pedidoController.addDetail()}" process="@this"
+			update="detPed" />
+		<p:dataTable id="detPed" var="detalle"
+			value="#{pedidoController.detallesPedido}" rowKey="detalle.id"
+			selectionMode="single">
+			<f:facet name="header">Lista de elementos</f:facet>
+			<!-- <p:ajax event="rowEdit" listener="#{dtAddRowView.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{dtAddRowView.onRowCancel}" update=":form:msgs" /> -->
+
+
+			<p:column headerText="Código">
+				<h:outputText id="code" value="#{detalle.productoId.getCodigo()}"
+					style="width:100%" />
+			</p:column>
+
+			<p:column headerText="Descripción">
+				<h:outputText id="descr" value="#{detalle.productoId.getNombre()}"
+					style="width:100%" />
+			</p:column>
+
+			<p:column headerText="Observación">
+				<h:outputText id="obs" value="#{detalle.getObservacion()}"
+					style="width:100%" />
+			</p:column>
+
+			<p:column headerText="Cantidad">
+				<h:outputText id="cantidad" value="#{detalle.getCantidad()}"
+					style="width:100%" />
+			</p:column>
+
+
+		</p:dataTable>
+
+
+		
 	</h:form>
 </body>
 </html>

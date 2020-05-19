@@ -125,7 +125,7 @@ public class UsuarioController implements Serializable {
 			this.usuario = usuarioService.loginUser(username, clave);
 
 			if (Objects.nonNull(usuario) && usuario.getUsuario().equals(username) && usuario.getClave().equals(clave)) {
-				redireccionarPagina("/producto.xhtml");
+				redireccionarPagina("/listapedidos.xhtml");
 			} else {
 				agregarMensajeError("Error:", "Usuario o contraseña incorrectos");
 			}
